@@ -11,6 +11,17 @@ Object.defineProperty(Vue.prototype, '$moment', { get() {
 
 import App from './components/App.vue'
 
+
+
+let events = window._INITIAL_STATE_.map(event => {
+  return {
+    description: event.description,
+    date: moment(event.date)
+  }
+})
+let initialState = Object.assign({}, store.state, { events })
+store.replaceState(initialState)
+
 new Vue({
   el: '#app',
   data: {
